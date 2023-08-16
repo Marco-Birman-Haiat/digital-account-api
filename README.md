@@ -145,7 +145,7 @@ The project follows a layered architecture:
 
 
 <br>
-<details><summary>Versão Portugês</summary>
+<details><summary>Versão Português</summary>
 
 # API REST para Conta Digital
 
