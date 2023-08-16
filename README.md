@@ -75,8 +75,8 @@ The API will be accessible at `http://localhost:8080` for validation. But all th
 
 ### Create Account
 
-**Endpoint:** `POST {base-url}/accounts`
-**Description:** Create a new digital account.
+**Endpoint:** `POST {base-url}/accounts`  
+**Description:** Create a new digital account.  
 **Request Body:**
 ```json
 // Create account
@@ -100,9 +100,9 @@ The API will be accessible at `http://localhost:8080` for validation. But all th
 
 ### Transfer Funds
 
-**Endpoint:** `POST {base-url}/transfers`
-**Description:** Execute a fund transfer between two accounts.
-**Request Body:** Transfer details (sender, recipient, amount, etc.)
+**Endpoint:** `POST {base-url}/transfers`  
+**Description:** Execute a fund transfer between two accounts.  
+**Request Body:** Transfer details (sender, recipient, amount, etc.)  
 
 ```json
 { "sender-document": "documento_do_emissor", "receiver-document": "documento_do_receptor", "value": valor_da_transacao_numerico }
@@ -123,9 +123,9 @@ The API will be accessible at `http://localhost:8080` for validation. But all th
 
 ### Transaction History
 
-**Endpoint:** `GET {base-url}/accounts/{accountId}/transaction-history`
-**Description:** Retrieve transaction history for a specific account.
-**Path Parameter:** `accountId` (Account ID).
+**Endpoint:** `GET {base-url}/accounts/{accountId}/transaction-history`  
+**Description:** Retrieve transaction history for a specific account.  
+**Path Parameter:** `accountId` (Account ID).  
 **Response:** List of transactions. Done and received;
 
 ## Database
