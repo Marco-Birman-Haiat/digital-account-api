@@ -5,13 +5,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.time.Instant;
 
-public record TransferDTO(
-
+public record TransferCreatedResponse(
+        Long id,
+        @JsonProperty("available-value")
+        BigDecimal availableValue,
         @JsonProperty("sender-document")
         String senderDocument,
         @JsonProperty("receiver-document")
         String receiverDocument,
-        BigDecimal value,
         Instant datetime
-) {
+        ) {
 }
