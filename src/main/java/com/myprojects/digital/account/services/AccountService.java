@@ -42,8 +42,8 @@ public class AccountService {
         return optionalFoundAccount.get();
     }
 
-    public BigDecimal credit(Long id, BigDecimal value) {
-        Optional<Account> optionalFoundAccount = accountRepository.findById(id);
+    public BigDecimal credit(Long accountId, BigDecimal value) {
+        Optional<Account> optionalFoundAccount = accountRepository.findById(accountId);
 
         if (optionalFoundAccount.isEmpty()) {
             throw new AccountNotFoundException("sender account not found");
@@ -56,13 +56,12 @@ public class AccountService {
 
     }
 
-    public BigDecimal debit(Long id, BigDecimal value) {
-        Optional<Account> optionalFoundAccount = accountRepository.findById(id);
+    public BigDecimal debit(Long accountId, BigDecimal value) {
+        Optional<Account> optionalFoundAccount = accountRepository.findById(accountId);
 
         if (optionalFoundAccount.isEmpty()) {
             throw new AccountNotFoundException("sender account not found");
         }
-
         Account accountToUpdate = optionalFoundAccount.get();
         if (value.compareTo(accountToUpdate.getAvailableValue()) == 1) {
             throw new InsufficientValueException("unavailable funds");
@@ -73,8 +72,8 @@ public class AccountService {
         return updatedAccount.getAvailableValue();
     }
 
-    public Optional<Account> findAccountById(Long id) {
-        return accountRepository.findById(id);
+    public Optional<Account> findAccountById(Long accountId) {
+        return accountRepository.findById(accountId);
     }
 
     public List<Account> findAllAccounts() {
