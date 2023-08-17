@@ -2,6 +2,7 @@ package com.myprojects.digital.account.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.myprojects.digital.account.utils.BrSocialSecurity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -17,7 +18,7 @@ public class Account {
     private Long id;
     private String name;
     @Column(unique = true)
-    private String document;
+    private BrSocialSecurity document;
 
     @OneToMany(mappedBy = "senderAccount")
     @JsonIgnore
@@ -37,7 +38,7 @@ public class Account {
     public Account(Long id, String name, String document, BigDecimal availableValue) {
         this.id = id;
         this.name = name;
-        this.document = document;
+        this.document = new BrSocialSecurity(document);
         this.availableValue = availableValue;
     }
 
@@ -74,11 +75,11 @@ public class Account {
     }
 
     public String getDocument() {
-        return document;
+        return document.getValue();
     }
 
     public void setDocument(String document) {
-        this.document = document;
+        this.document.setValue(document);
     }
 
     public BigDecimal getAvailableValue() {
