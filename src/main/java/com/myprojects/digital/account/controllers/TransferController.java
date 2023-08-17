@@ -1,7 +1,6 @@
 package com.myprojects.digital.account.controllers;
 
-import com.myprojects.digital.account.controllers.dto.transfer.TransferCreatedDTO;
-import com.myprojects.digital.account.controllers.dto.transfer.TransferDTO;
+import com.myprojects.digital.account.controllers.dto.transfer.TransferCreatedResponse;
 import com.myprojects.digital.account.controllers.dto.transfer.TransferDTOMapper;
 import com.myprojects.digital.account.controllers.dto.transfer.TransferRequest;
 import com.myprojects.digital.account.models.entities.Transfer;
@@ -25,9 +24,9 @@ public class TransferController {
     }
 
     @PostMapping
-    public ResponseEntity<TransferCreatedDTO> createTransfer(@RequestBody TransferRequest transferRequest) {
+    public ResponseEntity<TransferCreatedResponse> createTransfer(@RequestBody TransferRequest transferRequest) {
         Transfer createdTransfer = transferService.initiateTransfer(transferRequest);
-        TransferCreatedDTO createdTransferDTO = transferDTOMapper.mapTransferToCreatedResponse(createdTransfer);
+        TransferCreatedResponse createdTransferDTO = transferDTOMapper.mapTransferToCreatedResponse(createdTransfer);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdTransferDTO);
     }
 }
