@@ -7,7 +7,8 @@ import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 
-public record AccountDTO(
+
+public record AccountCreatRequest(
         Long id,
         @Size(min = 2)
         @NotNull(message = "name should not be null or blank")
