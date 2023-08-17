@@ -5,11 +5,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AccountDTOMapper {
-    public Account mapDtoToAccount(AccountDTO accountDTO) {
-        return new Account(accountDTO.id(), accountDTO.name(), accountDTO.document(), accountDTO.availableValue());
+    public static Account mapCreateRequestToAccount(AccountCreatRequest accountCreatRequest) {
+        return new Account(accountCreatRequest.id(), accountCreatRequest.name(), accountCreatRequest.document(), accountCreatRequest.availableValue());
     }
 
-    public AccountDTO mapAccountToDTO(Account account) {
-        return new AccountDTO(account.getId(), account.getName(), account.getDocument(), account.getAvailableValue());
+    public static AccountCreatResponse mapAccountToCreateResponse(Account account) {
+        return new AccountCreatResponse(account.getId(), account.getName(), account.getDocument(), account.getAvailableValue());
     }
 }
