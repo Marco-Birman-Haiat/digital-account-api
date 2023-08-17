@@ -5,10 +5,10 @@ import com.myprojects.digital.account.controllers.dto.ErrorResponseDTO;
 import jakarta.validation.UnexpectedTypeException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 
 @ControllerAdvice
 public class ControllerExceptionHandler {
@@ -16,7 +16,8 @@ public class ControllerExceptionHandler {
     @ExceptionHandler({
             InsufficientValueException.class,
             DuplicatedTransferException.class,
-            DocumentInUseException.class
+            DocumentInUseException.class,
+            InvalidInputException.class
     })
     public ResponseEntity<ErrorResponseDTO> handleUnprocessableException(
             RuntimeException exception) {
@@ -38,11 +39,12 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler({
             MethodArgumentNotValidException.class,
-            UnexpectedTypeException.class
+            UnexpectedTypeException.class,
+            HttpMessageNotReadableException.class
     })
     public ResponseEntity<ErrorResponseDTO> handleInvalidRequestException(
             Exception exception) {
-        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(exception.getMessage());
+        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO("invalid request");
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(errorResponseDTO);
